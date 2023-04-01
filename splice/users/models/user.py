@@ -1,7 +1,10 @@
+import os
 import uuid
 from django.db import models
+from cryptography.fernet import Fernet
 from django.contrib.auth.models import User
 
+fernet = Fernet(bytes(os.getenv("ENCRYPTION_KEY")))
 
 class SpliceUser(User):
     """username field houses the ID of the user generated on the Node JS application"""
@@ -26,8 +29,13 @@ class SpliceUser(User):
 
     @staticmethod
     def encrypt_id(transaction_id: uuid.uuid4) -> bytes:
-        return b"example byte"
+        return fernet.encrypt(transaction_id.encode())
 
     def get_transaction_id(self) -> uuid.UUID:
         # decrypt transaction id and return
-        return None
+        """ if database is local, Binary is stord as type Bytes else type Memory View """
+        return (
+            fernet.decrypt(self.transaction_id).decode() if os.getenv("ENVIROMENT") == "LOCAL"
+            else 
+            fernet.decrypt(self.transaction_id.tobytes()).decode()
+            )
