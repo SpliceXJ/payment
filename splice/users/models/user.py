@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 fernet = Fernet(bytes(os.getenv("ENCRYPTION_KEY")))
 
+
 class SpliceUser(User):
     """username field houses the ID of the user generated on the Node JS application"""
 
@@ -33,9 +34,9 @@ class SpliceUser(User):
 
     def get_transaction_id(self) -> uuid.UUID:
         # decrypt transaction id and return
-        """ if database is local, Binary is stord as type Bytes else type Memory View """
+        """if database is local, Binary is stord as type Bytes else type Memory View"""
         return (
-            fernet.decrypt(self.transaction_id).decode() if os.getenv("ENVIROMENT") == "LOCAL"
-            else 
-            fernet.decrypt(self.transaction_id.tobytes()).decode()
-            )
+            fernet.decrypt(self.transaction_id).decode()
+            if os.getenv("ENVIROMENT") == "LOCAL"
+            else fernet.decrypt(self.transaction_id.tobytes()).decode()
+        )
