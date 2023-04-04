@@ -8,11 +8,11 @@ from splice.users.serializers.user_serializer import SpliceUserSerializer
 def create_user(request):
     serializer = SpliceUserSerializer(request.data)
     if serializer.is_valid():
-        new_user = SpliceUser.creare(
-            firstname=request.data.firstname,
-            lastname=request.data.lastname,
-            email=request.data.email,
-            username=request.data.username,
+        new_user = SpliceUser.create(
+            firstname=serializer.data.firstname,
+            lastname=serializer.data.lastname,
+            email=serializer.data.email,
+            username=serializer.data.username,
         )
         return JsonResponse(
             {"transaction_id": new_user.get_transaction_id()}, status=200

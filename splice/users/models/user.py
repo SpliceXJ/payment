@@ -20,7 +20,7 @@ class SpliceUser(User):
         return self.username
 
     @staticmethod
-    def creare(email: str, username: str) -> "SpliceUser":
+    def create(email: str, username: str) -> "SpliceUser":
         return SpliceUser.objects.create(
             username=username,
             email=email,
