@@ -5,12 +5,13 @@ from rest_framework.decorators import api_view, permission_classes
 from splice.users.models.user import SpliceUser
 
 
-@api_view(["POST"])
+@api_view(["GET"])
 @permission_classes((IsAuthenticated,))
 def get_transaction_id(request):
+    # fetch request user from token here
     try:
         transaction_id = SpliceUser.objects.get(
-            username=request.data["username"]
+            username=request.user.username
         ).get_transaction_id()
 
         return JsonResponse({"transaction_id": transaction_id}, status=200)

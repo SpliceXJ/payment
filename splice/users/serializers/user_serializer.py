@@ -6,8 +6,8 @@ class SpliceUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = SpliceUser
         fields = [
-            "firstname",
-            "lastname",
+            "username",
+            "user_id",
             "email",
             "is_vendor",
             "created_at",
