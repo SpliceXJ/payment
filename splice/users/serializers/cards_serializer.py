@@ -4,7 +4,7 @@ from splice.users.serializers.user_serializer import SpliceUserSerializer
 
 
 class CardsSerializer(serializers.ModelSerializer):
-    owner = SpliceUserSerializer(many=True)
+    owner = SpliceUserSerializer(many=False)
 
     class Meta:
         model = UsersCard

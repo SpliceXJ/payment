@@ -9,7 +9,7 @@ from splice.users.models.user import SpliceUser
 @permission_classes((IsAuthenticated,))
 def delete_user(request):
     try:
-        SpliceUser.objects.get(id=request.data.id).delete()
+        SpliceUser.objects.get(id=request.user.id).delete()
         return JsonResponse({"message": "deleted successfully"}, status=201)
     except SpliceUser.DoesNotExist:
         return JsonResponse({"message": "deletion un-successful"}, status=401)

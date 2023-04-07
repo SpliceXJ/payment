@@ -10,7 +10,10 @@ from django.contrib.auth.models import User
 fernet = Fernet(os.getenv("ENCRYPTION_KEY").encode())
 
 class SpliceUser(User):
-    """username field houses the ID of the user generated on the Node JS application"""
+    """
+    username field houses the ID of the user generated on the Node JS application,
+    email is the email of the user generated on the Node JS application
+    """
 
     user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     is_vendor = models.BooleanField(default=False)
