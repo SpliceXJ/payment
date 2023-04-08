@@ -7,17 +7,19 @@ from splice.users.models.user import SpliceUser
 class Payments(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     amount = models.FloatField(blank=False)
+    item_name = models.CharField(max_length=100)
     reference = models.CharField(max_length=100)
     initiator = models.ForeignKey(
         SpliceUser, related_name="spent_cash", on_delete=models.PROTECT
     )
-    receipient = models.ForeignKey(
+    recepient = models.ForeignKey(
         SpliceUser, related_name="received_cash", on_delete=models.PROTECT
     )
+    created_at = models.DateTimeField(auto_now_add=True)
     is_completed = models.BooleanField(default=True, blank=False)
 
     def __str__(self) -> str:
-        return f"{self.initiator.email} to {self.receipient.email}"
+        return f"{self.initiator.email} to {self.recepient.email}"
 
     @staticmethod
     def create(
@@ -25,12 +27,14 @@ class Payments(models.Model):
         initiator: "SpliceUser",
         receipient: "SpliceUser",
         reference: str,
+        item_name: str
     ) -> "Payments":
         return Payments.objects.create(
             amount=amount,
             reference=reference,
             initiator=initiator,
             receipient=receipient,
+            item_name=item_name
         )
 
     @staticmethod
