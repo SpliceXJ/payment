@@ -9,10 +9,11 @@ from splice.users.serializers.cards_serializer import CardsSerializer
 @api_view(["GET"])
 @permission_classes((IsAuthenticated,))
 def get_my_cards(request):
-    
     cards = UsersCard.objects.filter(owner__id=request.user.id)
-    
+
     if cards.exists():
-        return JsonResponse({"data": CardsSerializer(cards, many=True).data}, status=200)
-    
+        return JsonResponse(
+            {"data": CardsSerializer(cards, many=True).data}, status=200
+        )
+
     return JsonResponse({}, status=201)

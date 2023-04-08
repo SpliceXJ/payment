@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+
 load_dotenv()
 
 import uuid
@@ -8,6 +9,7 @@ from cryptography.fernet import Fernet
 from django.contrib.auth.models import User
 
 fernet = Fernet(os.getenv("ENCRYPTION_KEY").encode())
+
 
 class SpliceUser(User):
     """

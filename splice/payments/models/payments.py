@@ -27,14 +27,14 @@ class Payments(models.Model):
         initiator: "SpliceUser",
         receipient: "SpliceUser",
         reference: str,
-        item_name: str
+        item_name: str,
     ) -> "Payments":
         return Payments.objects.create(
             amount=amount,
             reference=reference,
             initiator=initiator,
             receipient=receipient,
-            item_name=item_name
+            item_name=item_name,
         )
 
     @staticmethod

@@ -4,6 +4,7 @@ from splice.users.serializers.user_serializer import SpliceUserSerializer
 
 from splice.payments.models.payments import Payments
 
+
 class PaymentsModelSerializer(ModelSerializer):
     initiator = SpliceUserSerializer(many=False)
     recepient = SpliceUserSerializer(many=False)
@@ -16,5 +17,5 @@ class PaymentsModelSerializer(ModelSerializer):
             "initiator",
             "recepient",
             "created_at",
-            "is_completed"
+            "is_completed",
         ]

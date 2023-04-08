@@ -14,9 +14,9 @@ def create_user(request):
         )
         return JsonResponse(
             {
-            "transaction_id": new_user.get_transaction_id(),
-            "data": SpliceUserSerializer(new_user).data
+                "transaction_id": new_user.get_transaction_id(),
+                "data": SpliceUserSerializer(new_user).data,
             },
-            status=200
+            status=200,
         )
     return JsonResponse(serializer.errors, status=400)

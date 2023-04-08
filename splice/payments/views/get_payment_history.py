@@ -15,5 +15,5 @@ def get_payment_history(request):
         return JsonResponse(
             {"data": PaymentsModelSerializer(my_payments, many=True).data}, status=200
         )
-    
+
     return JsonResponse({}, status=201)
