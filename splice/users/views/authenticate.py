@@ -9,7 +9,7 @@ from rest_framework.authtoken.models import Token
 def get_auth_token(request):
     # add serializer validation here
     try:
-        auth_user = SpliceUser.objects.get(username=request.data["username"])
+        auth_user = SpliceUser.objects.get(username=request.data["user_id"])
 
         """ compare transaction ID received and user's transaction ID """
 

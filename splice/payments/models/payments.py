@@ -7,8 +7,8 @@ from splice.users.models.user import SpliceUser
 class Payments(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     amount = models.FloatField(blank=False)
-    item_name = models.CharField(max_length=100)
-    reference = models.CharField(max_length=100)
+    item_id = models.CharField(max_length=100)
+    reference = models.CharField(max_length=100, blank=True)
     initiator = models.ForeignKey(
         SpliceUser, related_name="spent_cash", on_delete=models.PROTECT
     )
@@ -16,7 +16,7 @@ class Payments(models.Model):
         SpliceUser, related_name="received_cash", on_delete=models.PROTECT
     )
     created_at = models.DateTimeField(auto_now_add=True)
-    is_completed = models.BooleanField(default=True, blank=False)
+    is_completed = models.BooleanField(default=False, blank=False)
 
     def __str__(self) -> str:
         return f"{self.initiator.email} to {self.recepient.email}"
@@ -26,15 +26,15 @@ class Payments(models.Model):
         amount: Union[int, float],
         initiator: "SpliceUser",
         receipient: "SpliceUser",
-        reference: str,
-        item_name: str,
+        item_id: str,
+        reference: str = None,
     ) -> "Payments":
         return Payments.objects.create(
             amount=amount,
             reference=reference,
             initiator=initiator,
             receipient=receipient,
-            item_name=item_name,
+            item_id=item_id,
         )
 
     @staticmethod

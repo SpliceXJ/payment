@@ -10,6 +10,6 @@ from splice.users.models.user import SpliceUser
 def delete_user(request):
     try:
         SpliceUser.objects.get(id=request.user.id).delete()
-        return JsonResponse({"message": "deleted successfully"}, status=201)
+        return JsonResponse({"message": "deleted successfully"}, status=200)
     except SpliceUser.DoesNotExist:
-        return JsonResponse({"message": "deletion un-successful"}, status=401)
+        return JsonResponse({"message": "deletion un-successful"}, status=400)
