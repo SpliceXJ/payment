@@ -20,4 +20,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("users/", include("splice.users.paths.urls")),
     path("payments/", include("splice.payments.paths.urls")),
+    path("health/", include("splice.utils.health")),
 ]

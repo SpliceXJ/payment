@@ -7,10 +7,11 @@ from splice.users.serializers.user_serializer import SpliceUserSerializer
 @api_view(["POST"])
 def create_user(request):
     serializer = SpliceUserSerializer(data=request.data)
-    if serializer.is_valid():
+    # if serializer.is_valid():
+    if "email" in request.data.keys() and "user_id" in request.data.keys():
         new_user = SpliceUser.create(
-            email=serializer.data["email"],
-            username=serializer.data["username"],
+            email=request.data["email"],
+            username=request.data["user_id"],
         )
         return JsonResponse(
             {
@@ -19,4 +20,5 @@ def create_user(request):
             },
             status=200,
         )
-    return JsonResponse(serializer.errors, status=400)
+    return JsonResponse({"message": "email amd user_id required"}, status=400)
+    # return JsonResponse(serializer.errors, status=400)
