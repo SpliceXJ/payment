@@ -45,6 +45,6 @@ class SpliceUser(User):
         """if database is local, Binary is stored as type Bytes else type Memory View"""
         return (
             fernet.decrypt(self.transaction_id).decode()
-            if os.getenv("ENVIROMENT") == "LOCAL"
+            if os.getenv("ENVIROMENT") in ["LOCAL", "TEST"]
             else fernet.decrypt(self.transaction_id.tobytes()).decode()
         )

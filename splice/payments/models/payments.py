@@ -8,7 +8,7 @@ class Payments(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     amount = models.FloatField(blank=False)
     item_id = models.CharField(max_length=100)
-    reference = models.CharField(max_length=100, blank=True)
+    reference = models.CharField(max_length=100, blank=True, null=True)
     initiator = models.ForeignKey(
         SpliceUser, related_name="spent_cash", on_delete=models.PROTECT
     )
@@ -25,7 +25,7 @@ class Payments(models.Model):
     def create(
         amount: Union[int, float],
         initiator: "SpliceUser",
-        receipient: "SpliceUser",
+        recepient: "SpliceUser",
         item_id: str,
         reference: str = None,
     ) -> "Payments":
@@ -33,7 +33,7 @@ class Payments(models.Model):
             amount=amount,
             reference=reference,
             initiator=initiator,
-            receipient=receipient,
+            recepient=recepient,
             item_id=item_id,
         )
 
