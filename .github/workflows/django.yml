@@ -5,6 +5,14 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+    
+env:
+  ENVIROMENT: TEST
+  ENCRYPTION_KEY=: "_xgYUZrRsv5PwH697xNbs0AUWuunY8zeM5OiZmBPomQ="
+  DJANGO_SECRET_KEY: "django-insecure-!jc6097ao&r_y)2"
+  PAYMENT_SECRET_KEY: "-"
+  VERIFY_PAYMENT_URL: "-"
+  RECURRENT_PAYMENT_URL: "-"
 
 jobs:
   build:
