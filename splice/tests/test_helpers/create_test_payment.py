@@ -1,5 +1,4 @@
 import uuid
-import pytest
 import random
 from faker import Faker
 
@@ -8,7 +7,6 @@ from splice.payments.models.payments import Payments
 from splice.tests.test_helpers.create_test_user import create_test_splice_user
 
 
-@pytest.mark.django_db
 def create_test_payment(
     amount=None, initiator=None, recepient=None, reference=None
 ) -> "Payments":
