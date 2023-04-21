@@ -18,7 +18,6 @@ def test_user_create_card():
         owner=user,
         authorization=str(uuid.uuid4())[:25],
         email=Faker().email,
-        first_four_digits=random.randint(1000, 9999),
         last_four_digits=random.randint(1000, 9999),
         card_type=random.choice(["Visa", "Master", "Verve"]),
     )

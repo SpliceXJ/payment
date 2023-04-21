@@ -11,7 +11,6 @@ def create_test_card(owner=None) -> "UsersCard":
         owner=owner or create_test_splice_user(),
         authorization=str(uuid.uuid4())[:25],
         email=Faker().email,
-        first_four_digits=random.randint(1000, 9999),
         last_four_digits=random.randrange(1000, 9999),
         card_type=random.choice(["visa", "master", "verve"]),
     )
