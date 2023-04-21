@@ -1,0 +1,8 @@
+ENVIROMENT=LOCAL
+ENCRYPTION_KEY="_xxxxxxxxxxxxxxxxxxxxxxxxxxx"
+DJANGO_SECRET_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxx"
+PAYMENT_SECRET_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxx"
+VERIFY_PAYMENT_URL="https://xxxxxxxxxxxxxxxxxxxxxxxxxxx"
+RECURRENT_PAYMENT_URL="xxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+TEST_PAYMENT_REF="aaaaaaaaaa"
