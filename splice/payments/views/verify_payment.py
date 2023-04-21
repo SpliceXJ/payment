@@ -19,11 +19,6 @@ URL = os.getenv("VERIFY_PAYMENT_URL")
 def verify_payment(request):
     fields = ["reference","save_card","payment_instance_id"]
     from splice.payments.models.payments import Payments
-    # print(request.data)
-    # print(hasattr(dict(request.data), 'reference'))
-    # for pos in range(len(fields)):
-    #     if not hasattr(request.data, fields[pos]):
-    #         return JsonResponse({"message": f"{fields[pos]} is required"}, status=400)
 
     reference: str = request.data["reference"]
     save_card: bool = request.data["save_card"]
