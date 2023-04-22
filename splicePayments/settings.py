@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+
 load_dotenv()
 
 from pathlib import Path
@@ -11,8 +12,9 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 DEBUG = False if os.getenv("ENVIROMENT") == "PRODUCTION" else True
 
+# always leave as * if hosts are not certain... 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 INSTALLED_APPS = [
@@ -63,7 +65,6 @@ WSGI_APPLICATION = "splicePayments.wsgi.application"
 
 
 if os.getenv("ENVIROMENT") in ["LOCAL", "TEST"]:
-
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
