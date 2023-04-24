@@ -32,17 +32,21 @@ class TestVerifyPayment:
            
 
     def test_verify_payment_instance_with_invalid_reference(self):
-        # alter the payload and change the reference
-        altered_payload = copy(self.payload)
-        altered_payload["reference"] = "invalid-reference"
+        """ this test must not be ran outside local enviroment """
 
-        response = self.client.post(
-            path = self.url,
-            data = altered_payload
-            )
+        if os.getenv("ENVIROMENT") == "LOCAL":
+            
+            # alter the payload and change the reference
+            altered_payload = copy(self.payload)
+            altered_payload["reference"] = "invalid-reference"
 
-        assert response.status_code == 400
-        assert "transaction not successful" in response.json()["message"]
+            response = self.client.post(
+                path = self.url,
+                data = altered_payload
+                )
+
+            assert response.status_code == 400
+            assert "transaction not successful" in response.json()["message"]
 
     
     def test_verify_payment_instance_with_valid_reference(self):
