@@ -35,19 +35,18 @@ def pay_with_saved_card(request):
         url=URL,
         headers={
             "authorization": f'Bearer {os.getenv("PAYMENT_SECRET_KEY")}',
-            "content-type": "application/json",
             "cache-control": "no-cache",
         },
         data=form,
     )
 
     data = response.json()
-
-    if data.data.status != "success":
+    
+    if data["status"] == False:
         return JsonResponse({"message": "transaction not successful"}, status=400)
 
     payment_instance.is_completed = True
-    payment_instance.reference = data.data.reference  # reference from charge
+    payment_instance.reference = data["data"]["reference"]  # reference from charge
     payment_instance.save()
 
     return JsonResponse({"message": "transaction successful"}, status=200)

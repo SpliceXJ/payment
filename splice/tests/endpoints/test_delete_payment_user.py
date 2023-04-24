@@ -6,7 +6,7 @@ from splice.tests.test_helpers.create_test_user import create_test_splice_user
 
 
 @pytest.mark.django_db
-class TestUpdateSpliceUser:
+class TestDeleteSpliceUser:
 
     def setup_method(self, method):
         self.user: SpliceUser = create_test_splice_user()

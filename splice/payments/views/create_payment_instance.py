@@ -28,10 +28,10 @@ def create_payment_instance(request):
     new_instance = Payments.create(
         amount=request.data["amount"],
         initiator=initiator,
-        receipient=recepient,
+        recepient=recepient,
         item_id=request.data["item_id"],
     )
 
     return JsonResponse(
-        PaymentsModelSerializer(new_instance, many=False).data, status=201
+        PaymentsModelSerializer(new_instance, many=False).data, status=200
     )

@@ -11,8 +11,6 @@ class CardsSerializer(serializers.ModelSerializer):
         fields = [
             "owner",
             "email",
-            "first_four_digits",
             "last_four_digits",
-            "card_name",
             "card_type",
         ]

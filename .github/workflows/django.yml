@@ -13,6 +13,7 @@ env:
   PAYMENT_SECRET_KEY: "-"
   VERIFY_PAYMENT_URL: "-"
   RECURRENT_PAYMENT_URL: "-"
+  TEST_PAYMENT_REF: "lalalalalala"
 
 jobs:
   build:

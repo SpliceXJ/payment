@@ -11,5 +11,5 @@ urlpatterns = [
     path("get-sales-history/", get_sales_history),
     path("create-payment-instance/", create_payment_instance),
     path("verify-payment/", verify_payment),
-    path("pay-using-saved-card/", verify_payment),
+    path("pay-using-saved-card/", pay_with_saved_card),
 ]

@@ -33,7 +33,7 @@ def verify_payment(request):
     )
 
     data = response.json()
-    if data["data"]["status"] != "success":
+    if data["status"] == False:
         return JsonResponse({"message": "transaction not successful"}, status=400)
 
     if save_card:

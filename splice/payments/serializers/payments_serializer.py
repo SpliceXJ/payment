@@ -13,7 +13,7 @@ class PaymentsModelSerializer(ModelSerializer):
         model = Payments
         fields = [
             "amount",
-            "item_name",
+            "item_id",
             "initiator",
             "recepient",
             "created_at",
