@@ -12,8 +12,7 @@ def update_user(request):
     user = SpliceUser.objects.get(id=request.user.id)
 
     if "email" in request.data.keys():
-
-        if SpliceUser.objects.filter(email = request.data["email"]).exists():
+        if SpliceUser.objects.filter(email=request.data["email"]).exists():
             return JsonResponse({"message": "email already exists"}, status=400)
 
         user.email = request.data["email"]

@@ -10,9 +10,8 @@ from rest_framework.permissions import IsAuthenticated
 @permission_classes((IsAuthenticated,))
 def get_payment_history(request):
     my_payments = Payments.objects.filter(
-        initiator__id=request.user.id,
-        is_completed = True
-        )
+        initiator__id=request.user.id, is_completed=True
+    )
 
     if my_payments.exists():
         return JsonResponse(

@@ -41,7 +41,7 @@ def pay_with_saved_card(request):
     )
 
     data = response.json()
-    
+
     if data["status"] == False:
         return JsonResponse({"message": "transaction not successful"}, status=400)
 

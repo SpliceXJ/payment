@@ -12,7 +12,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 DEBUG = False if os.getenv("ENVIROMENT") == "PRODUCTION" else True
 
-# always leave as * if hosts are not certain... 
+# always leave as * if hosts are not certain...
 
 ALLOWED_HOSTS = ["*"]
 
