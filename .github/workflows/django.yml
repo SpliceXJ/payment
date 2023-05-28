@@ -13,6 +13,9 @@ env:
   PAYMENT_SECRET_KEY: "-"
   VERIFY_PAYMENT_URL: "-"
   RECURRENT_PAYMENT_URL: "-"
+  AWS_ACCESS_KEY_ID: "-"
+  AWS_SECRET_ACCESS_KEY: "-"
+  AWS_QUEUE_URL: "-"
   TEST_PAYMENT_REF: "lalalalalala"
 
 jobs:
