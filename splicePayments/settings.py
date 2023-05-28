@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "splice",
+    "django_celery_results",
+    "django_celery_beat",
 ]
 
 
@@ -108,4 +110,31 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "splice.settings.token_authentication.BearerAuthentication",
     ]
+}
+
+
+from kombu.utils.url import safequote
+
+AWS_ACCESS_KEY = safequote(os.getenv("AWS_ACCESS_KEY_ID"))
+AWS_SECRET_KEY = safequote(os.getenv("AWS_SECRET_ACCESS_KEY"))
+
+BROKER_URL = "sqs://{aws_access_key}:{aws_secret_key}@".format(
+    aws_access_key=AWS_ACCESS_KEY, aws_secret_key=AWS_SECRET_KEY,
+)
+
+CELERY_BROKER_URL = BROKER_URL 
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_TIMEZONE = 'Europe/Oslo'
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+BROKER_TRANSPORT_OPTIONS = {
+    'predefined_queues': {
+        'testing': {
+            'url': f'{os.getenv("AWS_QUEUE_URL")}testing',
+            'access_key_id': os.getenv("AWS_ACCESS_KEY_ID"),
+            'secret_access_key': os.getenv("AWS_SECRET_ACCESS_KEY"),
+        }
+    }
 }
